@@ -1,23 +1,25 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Imagen from './Imagen'
 
-export default class Imagenes extends Component {
-    imagenes = () =>{
-        const imagenes = this.props.imagenes
+function Imagenes(props) {
+    const {imagenes} = props
+    return (
+        <div className="grid-images">
         {
-            imagenes.map(imagen =>(
-          
-        ))
+            imagenes.map(imagen => (
+                <Imagen
+                    id={imagen.id}
+                    tags={imagen.tags}
+                    likes={imagen.likes}
+                    previewURL={imagen.previewURL}
+                    downloads={imagen.downloads}
+                    views={imagen.views}
+                />
+            ))
         }
-
-
-        // console.log(this.props.imagenes)
-    }
-    render() {
-        return (
-            <div>
-                {this.imagenes()}                
-            </div>
-        )
-    }
+        
+        </div>
+    )
 }
+
+export default Imagenes
