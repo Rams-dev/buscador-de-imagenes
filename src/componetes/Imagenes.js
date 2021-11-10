@@ -1,24 +1,24 @@
 import React from 'react'
 import Imagen from './Imagen'
+import InfiniteScroll from 'react-infinite-scroll-component'
+import { useImages } from '../hooks/useImages'
 
-function Imagenes(props) {
-    const {imagenes} = props
+
+
+function Imagenes({ images }) {
+    const {getMore, page} = useImages()
+
     return (
-        <div className="grid-images">
-        {
-            imagenes.map(imagen => (
-                <Imagen
-                    id={imagen.id}
-                    tags={imagen.tags}
-                    likes={imagen.likes}
-                    previewURL={imagen.previewURL}
-                    downloads={imagen.downloads}
-                    views={imagen.views}
-                />
-            ))
-        }
-        
-        </div>
+            <InfiniteScroll className="grid-images" dataLength={images.length} hasMore={true} next={() => getMore(page)} >
+                {
+                    images.map((image, index) => (
+                        <Imagen
+                            key={index}
+                            image={image}
+                        />
+                    ))
+                }
+            </InfiniteScroll>
     )
 }
 

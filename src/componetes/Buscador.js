@@ -1,46 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Imagenes from './Imagenes'
-const API_KEY = '17445569-8153355b5d97e54516f976e80'
-
-function Buscador(){
-    const [valorBusquedad, setValorBusquedad] = useState('')
-    const [datos, setDatos] = useState([])
-
-    const getImages = () => {
-        fetch(`https://pixabay.com/api/?key=${API_KEY}&q=${valorBusquedad}`)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                setDatos(data.hits)
-            })
-    }
+import { useImages } from '../hooks/useImages'
+// import { useLocalStorage } from '../hooks/useLocalStorage'
+import Page401 from './Page401'
+import Loader from './Loader'
+import Header from './Header'
 
 
-    const onSubmit = (e) => {
-        e.preventDefault()
-        getImages()
-    }
-
+function Buscador() {
+    const { images, get, isLoading } = useImages()
+    // const {saveItem, lastSearch} = useLocalStorage()
+    
     useEffect(() => {
-        getImages()
+        get()
     },[])
+
+    if(isLoading){
+        return(
+            <Loader/>
+        )
+    }
 
     return (
         <div>
-             <form className="formSearch" onSubmit={onSubmit}>
-                    <input 
-                        type="text"
-                        className="form-control"
-                        name="buscador" 
-                        placeholder="Buscar" 
-                        onChange={(e)=>setValorBusquedad(e.target.value) } 
-                        value={valorBusquedad}
+            <Header/>
+            {
+                images.length === 0 ? <Page401/> : (
+                    <Imagenes
+                        images={images}
                     />
-                    <input type="submit" value="buscar" className="btn btn-search"/>
-                </form>
-                <Imagenes
-                imagenes={datos}
-                /> 
+                )
+            }
         </div>
     )
 }

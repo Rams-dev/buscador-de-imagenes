@@ -1,17 +1,16 @@
 import React from 'react'
 
-function Imagen(props){
-    
-    const {id,tags,likes,previewURL, views, downloads} = props
+function Imagen({image}){
+    const {likes, views, downloads, tags, webformatURL} = image
 
         return (
-            <div className="card" key={id}>
-                <img src={previewURL} alt={tags} className="img"/>
+            <div className="card">
+                <img src={webformatURL} alt={tags} className="img"/>
                 <div className="overlay">
-                    <div className="content">
-                        <p className="likes"><i class="far fa-thumbs-up"></i> {likes}</p>
-                        <p className="likes"><i class="far fa-eye"></i> {views}</p>
-                        <p className="likes"><i class="fas fa-download"></i> {downloads}</p>
+                    <div className="card__content">
+                        <p className="likes"><i className="far fa-thumbs-up"></i> {likes}</p>
+                        <p className="likes"><i className="far fa-eye"></i> {views}</p>
+                        <p className="likes"><i className="fas fa-download"></i> {downloads}</p>
                     </div>
                 </div>
             </div>
