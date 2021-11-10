@@ -1,3 +1,10 @@
+:root{
+  --secondary: rgba(173, 122, 10, 0.679);
+  --white: #fff;
+  --bg: #182942;
+
+}
+
 
 .header{
   margin-bottom: 20px;
@@ -15,7 +22,7 @@
 .header__content{
   max-width: 699px;
   min-width: 200px;
-  background: rgba(155, 109, 10, 0.979);
+  background: var(--secondary);
   margin: auto;
   padding: 20px 0px;
   border-bottom-left-radius: 10px;
@@ -49,7 +56,7 @@
   background: rgb(61, 151, 224);
   border: none;
   padding: 0px 20px;
-  color: white;
+  color: var(--white);
   font-size: 18px;
 }
 
@@ -60,7 +67,7 @@
 }
 
 body {
-  background: #000;
+  background: var(--bg);
 }
 
 .grid-images{
@@ -73,25 +80,29 @@ body {
 
 .card{
   position: relative;
-  border: 1px solid floralwhite;
   border-radius: 5px;
   overflow: hidden;
+}
+
+.card:hover{
+  transform: scale(1.01);
+  transition: ease-in .3s;
+
 }
 
 .img{
   width: 100%;
   height: 100%;
-  
   object-fit: cover;
 }
 
 .overlay {
-    background: black;
+    background: var(--secondary);
     position: absolute;
     width: 100%;
     height: 40px;
     bottom: 0px;
-    color: white;
+    color: var(--white);
     padding: 10px;
     box-sizing: border-box;
 }
@@ -111,6 +122,10 @@ body {
 
 /* page no found */
 
+.likes > i{
+  margin-right: 3px;
+}
+
 
 .content{
   width: 100%;  
@@ -120,7 +135,6 @@ body {
 .content__img{
   max-width: 550px;
   margin: auto;
-
 }
 
 .content__img>h2{
